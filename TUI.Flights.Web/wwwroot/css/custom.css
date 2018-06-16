@@ -1,0 +1,71 @@
+﻿input.form-control, select.form-control {
+    border: 1px solid #c5c5c5;
+    height: 50px;
+    background-color: #F7F7F7;
+    border-radius: 0;
+    font-size: 18px;
+    padding: 10px 15px;
+}
+
+    input.form-control, select.form-control:focus {
+        background-color: #fff;
+    }
+
+input,
+select {
+    font-size: 15px;
+    border-radius: 0;
+}
+
+button, .btn {
+    border-radius: 0;
+    cursor: pointer;
+}
+
+.btn-blue {
+    color: #fff;
+    background-color: #00B1BF;
+}
+
+.btn-delete {
+    float: right;
+    height: 45px;
+    padding: 0 20px;
+    color: #fff;
+    background-color: #EE836E;
+    font-weight: bold;
+}
+
+    .btn-delete:hover {
+        color: #fff;
+        background-color: #D23719;
+    }
+
+.diply_wrapper {
+    margin: 6% 2%;
+}
+
+.page-header--centered {
+    text-align: center;
+}
+
+.modal-title {
+    font-weight: bold;
+    font-size: 25px;
+}
+
+.closeModalconBtn {
+    font-size: 40px;
+}
+
+.modal-header {
+    border: none;
+    margin: 0;
+    padding: 0 10px 0 0;
+}
+
+.modal-body {
+    margin-bottom: 10px;
+    font-size: 15px;
+    text-align: center;
+}

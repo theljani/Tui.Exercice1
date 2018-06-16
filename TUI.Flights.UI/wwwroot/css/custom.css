@@ -1,0 +1,42 @@
+﻿input.form-control, select.form-control {
+    border: 1px solid #c5c5c5;
+    height: 50px;
+    background-color: #F7F7F7;
+    border-radius: 0;
+    font-size: 18px;
+    padding: 10px 15px;
+}
+
+input.form-control, select.form-control:focus {
+    background-color: #fff;
+}
+
+input,
+select{
+    
+    font-size: 15px;
+    border-radius: 0;
+}
+
+button, .btn {
+    border-radius: 0;
+    cursor: pointer;
+}
+
+.btn-blue {
+    background-color: #00B1BF;
+    color: #fff;
+}
+
+
+.btn-principal:hover {
+    background-color: #03A8B5;
+}
+
+.diply_wrapper {
+    margin: 6% 2%;
+}
+
+.page-header--centered {
+    text-align: center;
+}

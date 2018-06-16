@@ -1,0 +1,120 @@
+﻿@model IEnumerable<TUI.Flights.Common.Dtos.Flight.FlightDto>
+@{
+    ViewData["Title"] = "AllFlights";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="display_wrapper">
+    <div class="row page-header">
+        <div class="col-md-12">
+            <div class="col-md-6">
+                <h2>Flights List <span class="badge">@Model.Count()</span></h2>
+            </div>
+            <div class="col-md-6">
+                <a asp-action="CreateFlight" class="btn btn-blue btn-lg pull-right">Create new flight</a>
+            </div>
+        </div>
+    </div>
+    <br />
+    <div class="row flights_list">
+        @foreach (var item in Model)
+            {
+            <div class="col-md-4 flights_list_item">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <span class="panel-title"><b>@item.FlightNumber</b></span>
+                        <b class="pull-right">@item.FlightDate.ToString("dd MMM yyyy") at @item.FlightTime.ToShortTimeString()</b>
+                    </div>
+                    <div class="panel-body flights_list_item_details">
+                        <div class="col-md-12">
+                            <span class="pull-left"><b>From: </b>@item.AirportDeparture</span>
+                        </div>
+                        <div class="col-md-12">
+                            <span class="pull-left"><b>To: </b>@item.AirportDestination</span>
+                        </div>
+                        <div class="col-md-12">
+                            <span class="pull-left"><b>Distance (Miles): </b>@item.Distance</span>
+                        </div>
+                        <div class="col-md-12">
+                            <span class="pull-left"><b>Duration: </b>@item.EstimatedFlightDuration</span>
+                        </div>
+                    </div>
+                    <div class="panel-footer">
+                        <a href="javascript:void(0);" data-id="@item.Id" class="btn btn-dm btn-danger deleteFlightBtn">Delete</a>
+                        <a class="btn btn-md btn-blue" asp-action="GetFlightById" asp-route-flightId="@item.Id">Details</a>
+                    </div>
+                </div>
+
+            </div>
+            <div id="deleteFlightModal" class="modal">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div id="deleteModalContent"></div>
+
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-lg cancelBtn pull-left" data-dismiss="modal" #closeBtn>Cancel</button>
+                            <button href="javascript:void(0);" data-id="@item.Id" class="btn btn-lg btn-delete pull-right">Confirm</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+
+@section scripts
+    {
+    <script>
+
+        var DeleteView = '/Flights/DeleteFlight';
+        var ConfirmDeleteView = '/Flights/ConfirmDeleteFlight';
+
+        $(function () {
+            $(".deleteFlightBtn").click(function () {
+                var $buttonClicked = $(this);
+                var id = $buttonClicked.attr('data-id');
+                var options = { "backdrop": "static", keyboard: true };
+                $.ajax({
+                    type: "GET",
+                    url: DeleteView,
+                    contentType: "application/json; charset=utf-8",
+                    data: { "flightId": id },
+                    datatype: "json",
+                    success: function (data) {
+                        $('#deleteModalContent').html(data);
+                        $('#deleteFlightModal').modal(options);
+                        $('#deleteFlightModal').modal('show');
+
+                    },
+                    error: function () {
+                        alert("Data loaad failed.");
+                    }
+                });
+            });
+
+            $(".btn-delete").click(function () {
+                var $buttonClicked = $(this);
+                var id = $buttonClicked.attr('data-id');
+                $.ajax({
+                    type: "GET",
+                    url: ConfirmDeleteView,
+                    contentType: "application/json; charset=utf-8",
+                    data: { "flightId": id },
+                    datatype: "json",
+                    success: function (data) {
+
+                        $('.display_wrapper').load('/Flights/Index');
+                        $('#deleteFlightModal').modal('hide');
+
+                    },
+                    error: function () {
+                        alert("Data load failed.");
+                    }
+                });
+            });
+        });
+
+
+    </script>
+} 
