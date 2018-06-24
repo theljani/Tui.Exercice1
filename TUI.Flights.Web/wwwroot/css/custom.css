@@ -36,10 +36,10 @@ button, .btn {
     font-weight: bold;
 }
 
-    .btn-delete:hover {
-        color: #fff;
-        background-color: #D23719;
-    }
+.btn-delete:hover {
+    color: #fff;
+    background-color: #D23719;
+}
 
 .diply_wrapper {
     margin: 6% 2%;
@@ -68,4 +68,8 @@ button, .btn {
     margin-bottom: 10px;
     font-size: 15px;
     text-align: center;
+}
+
+.top-buffer {
+    margin-top: 15px;
 }

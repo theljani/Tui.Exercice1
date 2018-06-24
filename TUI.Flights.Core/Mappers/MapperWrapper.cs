@@ -18,31 +18,36 @@ namespace TUI.Flights.Core.Mappers
 
         public FlightDto MapFromFlight(Flight flight)
         {
-            return new FlightDto
+            if (flight != null)
             {
-                Id = flight.Id,
-                FlightNumber = flight.FlightNumber,
-                Distance = flight.Distance,
-                Aircraft = flight.Aircraft != null ? flight.Aircraft.Code : string.Empty,
-                AircraftId = flight.AircraftId,
-                AirportDeparture = flight.Departure != null ? flight.Departure.Name : string.Empty,
-                AirportDestination = flight.Destination != null ? flight.Destination.Name : string.Empty,
-                AirportDepartureId = flight.AirportDepartureId,
-                AirportDestinationId = flight.AirportDestinationId,
-                EstimatedArrivalTime = flight.EstimatedArrivalTime,
-                EstimatedFlightDuration = flight.EstimatedFlightDuration,
-                EstimatedFuelNeeded = flight.EstimatedFuelNeeded,
-                FlightDate = flight.FlightDate,
-                FlightTime = flight.FlightTime
-            };
+                return new FlightDto
+                {
+                    Id = flight.Id,
+                    FlightNumber = flight.FlightNumber,
+                    Distance = flight.Distance,
+                    Aircraft = flight.Aircraft != null ? flight.Aircraft.Code : string.Empty,
+                    AircraftId = flight.AircraftId,
+                    AirportDeparture = flight.Departure != null ? flight.Departure.Name : string.Empty,
+                    AirportDestination = flight.Destination != null ? flight.Destination.Name : string.Empty,
+                    DepartureAirportId = flight.AirportDepartureId,
+                    DestinationAirportId = flight.AirportDestinationId,
+                    EstimatedArrivalTime = flight.EstimatedArrivalTime,
+                    EstimatedFlightDuration = flight.EstimatedFlightDuration,
+                    EstimatedFuelNeeded = flight.EstimatedFuelNeeded,
+                    FlightDate = flight.FlightDate,
+                    FlightTime = flight.FlightTime
+                };
+            }
+
+            return null;
         }
 
         public void MapFromUpdateFlightArgs(Flight flight, UpdateFlightArgs flightArgs)
         {
             flight.Id = flightArgs.Id;
             flight.FlightNumber = flightArgs.FlightNumber;
-            flight.AirportDepartureId = flightArgs.AirportDepartureId;
-            flight.AirportDestinationId = flightArgs.AirportDestinationId;
+            flight.AirportDepartureId = flightArgs.DepartureAirportId;
+            flight.AirportDestinationId = flightArgs.DestinationAirportId;
             flight.FlightDate = flightArgs.FlightDate;
             flight.FlightTime = flightArgs.FlightTime;
             flight.AircraftId = flightArgs.AircraftId;

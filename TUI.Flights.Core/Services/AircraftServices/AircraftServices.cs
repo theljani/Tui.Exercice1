@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,7 +12,7 @@ using TUI.Flights.Common.Dtos.Aircraft;
 using TUI.Flights.Common.Entities;
 using TUI.Flights.Infrastructure.Base;
 
-namespace TUI.Flights.Core.Services.AirportServices
+namespace TUI.Flights.Core.Services.AircraftServices
 {
     public class AircraftServices : IAircraftServices
     {
@@ -34,9 +35,16 @@ namespace TUI.Flights.Core.Services.AirportServices
                 expression = (Aircraft aircraft) => (!string.IsNullOrEmpty(searchArgs.Filters.Code) && aircraft.Code.ToLower().Contains(searchArgs.Filters.Code.ToLower()));
             }
 
-            var aircrafts = await _aircraftsRepository.SearchAsync(expression, searchArgs.Pagination.PageSize.Value, searchArgs.Pagination.StartIndex.Value);
+            var aircrafts = await _aircraftsRepository.SearchAsync(expression);
 
-            return _autoMapper.Map<IEnumerable<AircraftDto>>(aircrafts);
+            return _autoMapper.Map<IEnumerable<AircraftDto>>(aircrafts).Skip(searchArgs.Pagination.StartIndex.Value).Take(searchArgs.Pagination.PageSize.Value);
+        }
+
+        public async Task<IEnumerable<AircraftDto>> GetAllAircrafts(PaginationArgs pagination)
+        {
+            var aircrafts = await _aircraftsRepository.GetAllAsync();
+
+            return _autoMapper.Map<IEnumerable<AircraftDto>>(aircrafts.ToList().Skip(pagination.StartIndex.Value).Take(pagination.PageSize.Value));
         }
     }
 }

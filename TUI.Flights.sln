@@ -21,6 +21,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TUI.Flights.Core.Tests", "T
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TUI.Flights.Web", "TUI.Flights.Web\TUI.Flights.Web.csproj", "{A5B67973-C921-4E78-8CBC-62AD8AF247D9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TUI.Flights.Web.Tests", "TUI.Flights.Web.Tests\TUI.Flights.Web.Tests.csproj", "{31D5D396-88F7-4123-B827-63C222C880D3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -51,6 +53,10 @@ Global
 		{A5B67973-C921-4E78-8CBC-62AD8AF247D9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A5B67973-C921-4E78-8CBC-62AD8AF247D9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A5B67973-C921-4E78-8CBC-62AD8AF247D9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{31D5D396-88F7-4123-B827-63C222C880D3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{31D5D396-88F7-4123-B827-63C222C880D3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{31D5D396-88F7-4123-B827-63C222C880D3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{31D5D396-88F7-4123-B827-63C222C880D3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -15,6 +15,8 @@ using TUI.Flights.Core.Mappers;
 using TUI.Flights.Common.Entities;
 using TUI.Flights.Core.Services.AirportServices;
 using TUI.Flights.Core.Helpers;
+using TUI.Flights.Web.Middlewares;
+using TUI.Flights.Core.Services.AircraftServices;
 
 namespace TUI.Flights.Web
 {
@@ -75,6 +77,7 @@ namespace TUI.Flights.Web
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                app.UseCustomCodeExceptionsMiddleware();
                 app.UseBrowserLink();
             }
             else

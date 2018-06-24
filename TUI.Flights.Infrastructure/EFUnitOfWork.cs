@@ -114,10 +114,10 @@ namespace TUI.Flights.Infrastructure
                  .OnDelete(DeleteBehavior.Restrict);
             });
 
-            builder.Entity<Airport>(entity =>
-            {
-                entity.OwnsOne(o => o.Location);
-            });
+            //builder.Entity<Airport>(entity =>
+            //{
+            //    entity.OwnsOne(o => o.Location);
+            //});
 
             builder.Entity<Aircraft>(entity =>
             {

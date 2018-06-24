@@ -13,8 +13,6 @@ namespace TUI.Flights.Common.Entities
         public string Phone { get; set; }
         public string Email { get; set; }
         public string Website { get; set; }
-
-
-        public virtual Location Location { get; set; }
+        //public virtual Location Location { get; set; }
     }
 }

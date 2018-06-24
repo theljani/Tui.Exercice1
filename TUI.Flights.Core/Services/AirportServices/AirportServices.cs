@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
@@ -25,9 +26,9 @@ namespace TUI.Flights.Core.Services.AirportServices
 
         public async Task<IEnumerable<AirportDto>> GetAllAirports(PaginationArgs pagination)
         {
-            var airports = await _airportsRepository.GetAllAsync(pagination.PageSize.Value, pagination.StartIndex.Value);
+            var airports = await _airportsRepository.GetAllAsync();
 
-            return _autoMapper.Map<IEnumerable<AirportDto>>(airports);
+            return _autoMapper.Map<IEnumerable<AirportDto>>(airports.ToList().Skip(pagination.StartIndex.Value).Take(pagination.PageSize.Value));
         }
 
         public async Task<IEnumerable<AirportDto>> SearchAirports(SearchAirportsArgs searchArgs)
@@ -40,9 +41,9 @@ namespace TUI.Flights.Core.Services.AirportServices
                 expression = (Airport airport) => (!string.IsNullOrEmpty(searchArgs.Filters.AirportName) && airport.Name.ToLower().Contains(searchArgs.Filters.AirportName.ToLower()));
             }
 
-            var airports = await _airportsRepository.SearchAsync(expression, searchArgs.Pagination.PageSize.Value, searchArgs.Pagination.StartIndex.Value);
+            var airports = await _airportsRepository.SearchAsync(expression);
 
-            return _autoMapper.Map<IEnumerable<AirportDto>>(airports);
+            return _autoMapper.Map<IEnumerable<AirportDto>>(airports.Skip(searchArgs.Pagination.StartIndex.Value).Take(searchArgs.Pagination.PageSize.Value));
         }
     }
 }

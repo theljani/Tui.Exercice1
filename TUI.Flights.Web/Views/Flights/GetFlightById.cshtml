@@ -16,18 +16,28 @@
                 <hr />
                 <div class="form-group row">
                     <div class="col-md-6">
-                        <label asp-for="AirportDeparture" class="control-label">Departure</label>
-                        <input asp-for="AirportDeparture" class="form-control" placeholder="Search and select a departure airport" />
-                        <input asp-for="AirportDepartureId" type="hidden" class="form-control" />
+                        <label asp-for="DepartureAirportId" class="control-label">Departure</label>
+                        <select asp-for="DepartureAirportId"
+                                asp-items="@(new SelectList(ViewBag.airports, "Id", "Value"))"
+                                class="form-control">
+                            <option>Select the departure airport</option>
+                        </select>
+                        @*<input asp-for="AirportDeparture" class="form-control" placeholder="Search and select a departure airport" />
+                            <input asp-for="AirportDepartureId" type="hidden" class="form-control" />*@
 
-                        <span asp-validation-for="AirportDeparture" class="text-danger"></span>
+                        <span asp-validation-for="DepartureAirportId" class="text-danger"></span>
                     </div>
                     <div class="col-md-6">
-                        <label asp-for="AirportDestination" class="control-label">Destination</label>
-                        <input asp-for="AirportDestination" class="form-control" placeholder="Search and select a destination airport" />
-                        <input asp-for="AirportDestinationId" type="hidden" class="form-control" />
+                        <label asp-for="DestinationAirportId" class="control-label">Destination</label>
+                        <select asp-for="DestinationAirportId"
+                                asp-items="@(new SelectList(ViewBag.airports, "Id", "Value"))"
+                                class="form-control">
+                            <option>Select the destination airport</option>
+                        </select>
+                        @*<input asp-for="AirportDestination" class="form-control" placeholder="Search and select a destination airport" />
+                            <input asp-for="AirportDestinationId" type="hidden" class="form-control" />*@
 
-                        <span asp-validation-for="AirportDestination" class="text-danger"></span>
+                        <span asp-validation-for="DestinationAirportId" class="text-danger"></span>
                     </div>
                 </div>
                 <hr />
@@ -45,11 +55,17 @@
                 </div>
                 <hr />
                 <div class="form-group">
-                    <label asp-for="Aircraft" class="control-label">Aircraft</label>
-                    <input asp-for="Aircraft" class="form-control" placeholder="Search and select an aircraft" />
-                    <input asp-for="AircraftId" type="hidden" class="form-control" />
+                    <label asp-for="AircraftId" class="control-label">Aircraft</label>
+                    <select asp-for="AircraftId"
+                            asp-items="@(new SelectList(ViewBag.aircrafts, "Id", "Value"))"
+                            class="form-control">
+                        <option>Select the aircraft model</option>
 
-                    <span asp-validation-for="Aircraft" class="text-danger"></span>
+                    </select>
+                    @*<input asp-for="Aircraft" class="form-control" placeholder="Search and select an aircraft" />
+                        <input asp-for="AircraftId" type="hidden" class="form-control" />*@
+
+                    <span asp-validation-for="AircraftId" class="text-danger"></span>
                 </div>
                 <hr />
                 <div class="form-group row">

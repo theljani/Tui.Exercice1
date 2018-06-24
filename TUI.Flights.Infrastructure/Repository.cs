@@ -26,42 +26,32 @@ namespace TUI.Flights.Infrastructure
             return GetSet().Find(id);
         }
 
-        public T Get(Expression<Func<T, bool>> filter)
-        {
-            return GetSet().Find(filter);
-        }
-
         public async Task<T> GetAsync(object id)
         {
             return await GetSet().FindAsync(id);
-        }
-
-        public async Task<T> GetAsync(Expression<Func<T, bool>> filter)
-        {
-            return await GetSet().FindAsync(filter);
         }
         #endregion
 
         #region GetAll and GetAllAsync and Search
 
-        public IQueryable<T> GetAll(int pageSize, int startIndex)
+        public IQueryable<T> GetAll()
         {
-            return GetSet().AsQueryable().Skip(startIndex).Take(pageSize);
+            return GetSet().AsQueryable();
         }
 
-        public async Task<IEnumerable<T>> GetAllAsync(int pageSize, int startIndex)
+        public async Task<IEnumerable<T>> GetAllAsync()
         {
-            return await GetSet().OrderByDescending(e => e.CreationDate).AsQueryable().Skip(startIndex).Take(pageSize).ToListAsync();
+            return await GetSet().ToListAsync();
         }
 
-        public IQueryable<T> Search(Expression<Func<T, bool>> filter, int pageSize, int startIndex)
+        public IQueryable<T> Search(Expression<Func<T, bool>> filter)
         {
-            return GetSet().Where(filter).AsQueryable().Skip(startIndex).Take(pageSize);
+            return GetSet().Where(filter).AsQueryable();
         }
 
-        public async Task<IEnumerable<T>> SearchAsync(Expression<Func<T, bool>> filter, int pageSize, int startIndex)
+        public async Task<IEnumerable<T>> SearchAsync(Expression<Func<T, bool>> filter)
         {
-            return await GetSet().Where(filter).AsQueryable().Skip(startIndex).Take(pageSize).ToListAsync();
+            return await GetSet().Where(filter).AsQueryable().ToListAsync();
         }
 
         #endregion
@@ -127,6 +117,11 @@ namespace TUI.Flights.Infrastructure
         private DbSet<T> GetSet()
         {
             return _unitOfWork.CreateSet<T>();
+        }
+
+        public int GetTotal()
+        {
+            return GetSet().Count();
         }
     }
 }

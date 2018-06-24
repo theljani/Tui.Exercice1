@@ -11,7 +11,7 @@ namespace TUI.Flights.Common.Args.Common
 
         public PaginationArgs()
         {
-            PageSize = 10;
+            PageSize = int.MaxValue;
             StartIndex = 0;
         }
     }

@@ -43,7 +43,7 @@ namespace TUI.Flights.Infrastructure.Data
                     Email = data.Email,
                     Phone = data.Phone,
                     Website = data.Website,
-                    Location = new Location(data.Country, data.City, data.State, data.TimeZone),
+                    //Location = new Location(data.Country, data.City, data.State, data.TimeZone),
                     CreationDate = DateTime.UtcNow,
                     LastUpdateDate = DateTime.UtcNow
                 };

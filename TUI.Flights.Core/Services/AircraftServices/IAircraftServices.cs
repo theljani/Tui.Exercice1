@@ -8,10 +8,11 @@ using TUI.Flights.Common.Args.Common;
 using TUI.Flights.Common.Dtos.Aircraft;
 using TUI.Flights.Common.Dtos.Airport;
 
-namespace TUI.Flights.Core.Services.AirportServices
+namespace TUI.Flights.Core.Services.AircraftServices
 {
     public interface IAircraftServices
     {
         Task<IEnumerable<AircraftDto>> SearchAircrafts(SearchAircraftsArgs searchArgs);
+        Task<IEnumerable<AircraftDto>> GetAllAircrafts(PaginationArgs pagination);
     }
 }

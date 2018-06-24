@@ -1,12 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using TUI.Flights.Common.Common;
 
 namespace TUI.Flights.Common.Dtos.Aircraft
 {
-    public class AircraftDto
+    public class AircraftDto : ReferenceItem
     {
-        public int Id { get; set; }
-        public string Code { get; set; }
     }
 }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Text;
+using TUI.Flights.Common.ValidationAttributes;
 
 namespace TUI.Flights.Common.Args.Flight
 {
@@ -14,10 +15,10 @@ namespace TUI.Flights.Common.Args.Flight
         public string FlightNumber { get; set; }
 
         [Required]
-        public int AirportDepartureId { get; set; }
+        public int DepartureAirportId { get; set; }
 
         [Required]
-        public int AirportDestinationId { get; set; }
+        public int DestinationAirportId { get; set; }
 
         [Required]
         public DateTime FlightDate { get; set; }

@@ -12,13 +12,13 @@ namespace TUI.Flights.Infrastructure.Base
     public interface IRepository<T> where T : class
     {
         T Get(object id);
-        T Get(Expression<Func<T, bool>> filter);
         Task<T> GetAsync(object id);
-        Task<T> GetAsync(Expression<Func<T, bool>> filter);
 
-        IQueryable<T> GetAll(int pageSize, int startIndex);
-        Task<IEnumerable<T>> GetAllAsync(int pageSize, int startIndex);
-        Task<IEnumerable<T>> SearchAsync(Expression<Func<T, bool>> filter, int pageSize, int startIndex);
+        IQueryable<T> GetAll();
+        Task<IEnumerable<T>> GetAllAsync();
+
+        IQueryable<T> Search(Expression<Func<T, bool>> filter);
+        Task<IEnumerable<T>> SearchAsync(Expression<Func<T, bool>> filter);
 
         T Add(T item);
         Task<T> AddAsync(T item);
@@ -28,7 +28,7 @@ namespace TUI.Flights.Infrastructure.Base
 
         void Delete(object id);
         Task<T> DeleteAsync(object id);
-
+        int GetTotal();
         EntityEntry GetEntry(T entity);
     }
 }

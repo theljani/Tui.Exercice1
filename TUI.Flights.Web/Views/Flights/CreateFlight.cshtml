@@ -1,4 +1,5 @@
 ﻿@model TUI.Flights.Common.Args.Flight.CreateFlightArgs
+
 @{
     ViewData["Title"] = "CreateFlight";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -20,17 +21,29 @@
                 <hr />
                 <div class="form-group row">
                     <div class="col-md-6">
-                        <label asp-for="DepartureAirport" class="control-label">Departure</label>
-                        <input asp-for="DepartureAirport" type="hidden" />
-                        <input id="DepartureAirportInput" required class="form-control" placeholder="Autocomplete and select a departure airport" />
-                        <span asp-validation-for="DepartureAirport" class="text-danger"></span>
+                        <label asp-for="DepartureAirportId" class="control-label">Departure</label>
+                        <select asp-for="DepartureAirportId"
+                                asp-items="@(new SelectList((IEnumerable<TUI.Flights.Common.Dtos.Airport.AirportDto>)ViewData["airports"], "Id", "Value"))"
+                                class="form-control">
+                            <option>
+                                Select the departure airport
+                            </option>
+                        </select>
+                        @*<input asp-for="DepartureAirport" type="hidden" />
+                            <input id="DepartureAirportInput" required class="form-control" placeholder="Autocomplete and select a departure airport" />*@
+                        <span asp-validation-for="DepartureAirportId" class="text-danger"></span>
                     </div>
                     <div class="col-md-6">
-                        <label asp-for="DestinationAirport" class="control-label">Destination</label>
-                        <input asp-for="DestinationAirport" type="hidden" />
-                        <input id="DestinationAirportInput" required class="form-control" placeholder="Autocomplete and select a destination airport" />
+                        <label asp-for="DestinationAirportId" class="control-label">Destination</label>
+                        <select asp-for="DestinationAirportId"
+                                asp-items="@(new SelectList((IEnumerable<TUI.Flights.Common.Dtos.Airport.AirportDto>)ViewData["airports"], "Id", "Value"))"
+                                class="form-control">
+                            <option>Select the destination airport</option>
+                        </select>
+                        @*<input asp-for="DestinationAirport" type="hidden" />
+                            <input id="DestinationAirportInput" required class="form-control" placeholder="Autocomplete and select a destination airport" />*@
 
-                        <span asp-validation-for="DestinationAirport" class="text-danger"></span>
+                        <span asp-validation-for="DestinationAirportId" class="text-danger"></span>
                     </div>
                 </div>
                 <hr />
@@ -48,10 +61,16 @@
                 </div>
                 <hr />
                 <div class="form-group">
-                    <label asp-for="Aircraft" class="control-label">Aircraft</label>
-                    <input asp-for="Aircraft" type="hidden" />
-                    <input id="AircraftInput" class="form-control" placeholder="Autocomplete and select an aircraft. For example A300" />
-                    <span asp-validation-for="Aircraft" class="text-danger"></span>
+                    <label asp-for="AircraftId" class="control-label">Aircraft</label>
+                    <select asp-for="AircraftId"
+                            asp-items="@(new SelectList((IEnumerable<TUI.Flights.Common.Dtos.Aircraft.AircraftDto>)ViewData["aircrafts"], "Id", "Value"))"
+                            class="form-control">
+                        <option>Select the aircraft model</option>
+                    </select>
+
+                    @*<input asp-for="Aircraft" type="hidden" />
+                        <input id="AircraftInput" class="form-control" placeholder="Autocomplete and select an aircraft. For example A300" />*@
+                    <span asp-validation-for="AircraftId" class="text-danger"></span>
                 </div>
                 <hr />
                 <div class="form-group">
@@ -65,6 +84,11 @@
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script type="text/javascript">
+        $.validator.setDefaults({
+            ignore: ''
+        });
+    </script>
 }
 
 <script src="~/lib/jquery/dist/jquery.js"></script>

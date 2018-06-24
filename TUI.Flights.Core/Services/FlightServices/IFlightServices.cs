@@ -12,10 +12,12 @@ namespace TUI.Flights.Core.Services.FlightServices
     public interface IFlightServices
     {
         Task<IEnumerable<FlightDto>> SearchFlights(SearchFlightsArgs searchArgs);
-        Task<IEnumerable<FlightDto>> GetAllFlights(PaginationArgs pagination);
+        Task<FlightListDto> GetAllFlights(PaginationArgs pagination);
         Task<FlightDto> GetFlight(GetFlightArgs args);
         Task<FlightDto> CreateFlight(CreateFlightArgs args);
         Task<FlightDto> UpdateFlight(UpdateFlightArgs args);
         Task<bool> DeleteFlight(int flighId);
+        void CheckFlightUnicity(int? flightId, string flightNumber);
+        FlightRelatedData GetFlightRelatedData(int departureAirportId, int destinationAirportId, int aircraftId);
     }
 }
